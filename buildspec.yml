@@ -1,0 +1,26 @@
+version: 0.2
+
+#env:
+#  parameter-store:
+#    key: "value"
+#    key: "value"    
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+  pre_build:
+    commands:
+      - echo "Installing requirements"
+      - python -m venv venv
+      - source venv/bin/activate
+      - pip install -r requirements.txt # install it to use my app in test phase for example
+  build:
+    commands:
+      - echo "Run tests"
+      - echo "All tests successfull"
+      - echo "Building Docker Image"
+      - docker build -t
+    
+  post_build:
+    commands:
+      - echo "Build is successfull""
