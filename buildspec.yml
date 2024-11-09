@@ -15,8 +15,6 @@ phases:
   pre_build:
     commands:
       - echo "Installing requirements"
-      - python -m venv venv
-      - source venv/bin/activate
       - pip install -r requirements.txt # install it to use my app in test phase for example
   build:
     commands:
