@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    IMAGE_TAG: ${CODEBUILD_BUILD_NUMBER}
+    IMAGE_TAG: "${CODEBUILD_BUILD_NUMBER}"
     IMAGE_NAME: "python-test"
   parameter-store:
     DOCKER_USER: /python-test-app/docker/username
