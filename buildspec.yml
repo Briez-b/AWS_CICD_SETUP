@@ -21,9 +21,9 @@ phases:
       - echo "All tests successfull"
       - echo "Building Docker Image"
       - echo "$DOCKER_PASSWD" | docker login -u "$DOCKER_USER" --password-stdin "$DOCKER_URL"
-      - docker build -t "${DOCKER_USER}/${IMAGE_NAME}:${CODEBUILD_BUILD_NUMBER}" .
+      - docker build -t "${DOCKER_USER}/${IMAGE_NAME}:latest" .
       - echo "Pushing image to registry"
-      - docker push "${DOCKER_URL}/${DOCKER_USER}/${IMAGE_NAME}:${CODEBUILD_BUILD_NUMBER}"
+      - docker push "${DOCKER_URL}/${DOCKER_USER}/${IMAGE_NAME}:latest"
   post_build:
     commands:
       - echo "END"
