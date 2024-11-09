@@ -2,7 +2,6 @@ version: 0.2
 
 env:
   variables:
-    IMAGE_TAG: "${CODEBUILD_BUILD_NUMBER}"
     IMAGE_NAME: "python-test"
   parameter-store:
     DOCKER_USER: /python-test-app/docker/username
@@ -24,7 +23,7 @@ phases:
       - docker login ${DOCKER_URL} -u ${DOCKER_USER} -p ${DOCKER_PASSWD} 
       - docker build -t "${DOCKER_USER}/${IMAGE_NAME}:${CODEBUILD_BUILD_NUMBER}" .
       - echo "Pushing image to registry"
-      - docker push "${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
+      - docker push "${DOCKER_USER}/${IMAGE_NAME}:${CODEBUILD_BUILD_NUMBER}"
   post_build:
     commands:
       - echo "END"
