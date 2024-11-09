@@ -1,9 +1,13 @@
 version: 0.2
 
-#env:
-#  parameter-store:
-#    key: "value"
-#    key: "value"    
+env:
+  variables:
+    IMAGE_TAG: ${CODEBUILD_BUILD_NUMBER}
+    IMAGE_NAME: "python-test"
+  parameter-store:
+    DOCKER_USER: /python-test-app/docker/username
+    DOCKER_PASSWD: /python-test-app/docker/password
+    DOCKER_URL: /python-test-app/docker/url   
 phases:
   install:
     runtime-versions:
@@ -19,8 +23,10 @@ phases:
       - echo "Run tests"
       - echo "All tests successfull"
       - echo "Building Docker Image"
-      - docker build -t
-    
+      - docker login ${DOCKER_URL} -u ${DOCKER_USER} -p ${DOCKER_PASSWD} 
+      - docker build -t "${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
   post_build:
     commands:
-      - echo "Build is successfull""
+      - echo "Image ${IMAGE_NAME}:${IMAGE_TAG} succesfuly created"
+      - echo "Pushing image to registry"
+      - docker push "${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
