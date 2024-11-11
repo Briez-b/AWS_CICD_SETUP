@@ -6,5 +6,5 @@ if [ -z "$CONTAINER_IDS" ]; then
     echo "No running containers."
 else
     echo "Stopping all running containers..."
-    docker stop $(docker ps -q)
+    #docker stop $(docker ps -q)
 fi
