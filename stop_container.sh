@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ -z "$(docker ps -q)" ]; then
+CONTAINER_IDS=$(docker ps -q)
+
+if [ -z "$CONTAINER_IDS" ]; then
     echo "No running containers."
 else
     echo "Stopping all running containers..."
