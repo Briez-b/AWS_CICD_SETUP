@@ -24,6 +24,7 @@ phases:
       - docker build -t "${DOCKER_USER}/${IMAGE_NAME}:${CODEBUILD_BUILD_NUMBER}" -t "${DOCKER_USER}/${IMAGE_NAME}:latest" .
       - echo "Pushing image to registry"
       - docker push "${DOCKER_USER}/${IMAGE_NAME}:${CODEBUILD_BUILD_NUMBER}"
+      - docker push "${DOCKER_USER}/${IMAGE_NAME}:latest"
   post_build:
     commands:
       - echo "END"
